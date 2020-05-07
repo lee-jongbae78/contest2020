@@ -1,49 +1,73 @@
+/*배경화면 색생 변경*/
 body{
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: linear-gradient(to bottom, #fff, skyblue)
+ }
+
+ /*티처블머신 화면 높이 수정*/
+#canvas{
+  margin-top: 80px;
+  width: 38%;
 
  }
 
+ #video1{
+  margin-top: 80px;
+  width: 60%;
+ }
+
+ #video2{
+  margin-top: 80px;
+  width: 60%;
+ }
 
  header{
    position: absolute;
    top: 0;
    left: 0;
-   padding: 0 100px;
+   padding: 0 30px;
    background: #262626;
    width: 100%;
    box-sizing: border-box;
 
  }
 
- header .logo{
-   color: #fff;
-   height: 50px;
-   line-height: 50px;
-   font-size: 24px;
-   float: left;
-   font-weight: bold;
+ header a{
+   color: white;
+   
  }
 
+ header div a:hover{
+  text-decoration: none;
+
+ }
  header nav{
    float: right;
+   text-decoration: none;
+
     }
 
  header nav ul{
    margin: 0;
    padding: 0;
    display: flex;
+   text-decoration: none;
+
  }
 
  header nav ul li{
    list-style: none;
+   font-size: 28px;
+   text-decoration: none;
+
  }
 
  header nav ul li a{
-   height: 50px;
-   line-height: 50px;
-   padding: 0 20px;
+   height: 80px;
+   line-height: 80px;
+   padding: 0 10px;
    color: #fff;
    text-decoration: none;
    display: block;
@@ -53,18 +77,49 @@ body{
  header nav ul li a.active{
    color: #fff;
    background: #2196f3;
+   text-decoration:none
  }
 
 .menu-toggle{
   color: #fff;
   float: right;
-  line-height: 50px;
-  font-size: 24px;
+  line-height: 80px;
+  font-size: 34px;
   cursor: pointer;
   display: none;
 }
 
-@media (max-width: 800px){
+header logo{
+  float: left;
+  text-decoration: none;
+
+   }
+
+header logo ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-decoration: none;
+
+}
+
+header logo ul li{
+  list-style: none;
+  font-size: 26px;
+  text-decoration: none;
+
+}
+
+header logo ul li a{
+  height: 80px;
+  line-height: 80px;
+  padding: 0 20px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+@media (max-width: 1000px){
   header{
     padding: 0 20px;
   }
@@ -78,7 +133,7 @@ body{
     width: 100%;
     height: calc(100vh - 50px);
     background: #333;
-    top: 50px;
+    top: 80px;
     left: -100%;
     transition: 0.5s;
   }
@@ -94,13 +149,16 @@ body{
 
   header nav ul li a{
     border-bottom: 2px solid rgba(0,0,0,.2);
+    
   }
 
 }
 
 h2{
   text-align: center;
-  color: white;
+  color: yellow;
+  margin-top: 18px;
+
 }
 
 .footer{
@@ -139,11 +197,23 @@ h2{
     
 }
 
+/*배경화면 파일로 바꾸기*/
 .mainpage{
   width: 100%;
   height: 900px;
   background: url("../background.jpg");
   background-size: 100% 100%;
+}
+
+img{
+  margin-top: 80px;
+  width:500px;
+  height:500px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin-left:-250px;
+  margin-top:-250px;
 }
 
 .button {
