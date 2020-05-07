@@ -111,11 +111,13 @@
                 // Prediction 2: run input through teachable machine classification model
                 const prediction = await model.predict(posenetOutput);
         
-        if(prediction[0].className == "ready" && prediction[0].probability.toFixed(2) == 1.00){
+        if(prediction[0].className == "stand" && prediction[0].probability.toFixed(2) == 1.00){
           labelContainer.childNodes[0].innerHTML = "준비";
         
-        } else if(prediction[1].className == "go1" && prediction[1].probability.toFixed(2) == 1.00){
+        } else if(prediction[1].className == "sqart" && prediction[1].probability.toFixed(2) == 1.00){
           labelContainer.childNodes[0].innerHTML = "시작";
+        } else if(prediction[2].className == "bent" && prediction[2].probability.toFixed(2) == 1.00){
+          labelContainer.childNodes[0].innerHTML = "자세 불량";
         } else {
         labelContainer.childNodes[0].innerHTML = "알 수 없음";
         }
