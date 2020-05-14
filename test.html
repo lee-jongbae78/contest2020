@@ -18,49 +18,39 @@
         <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=3gc59kryy1"></script>
 
         <style type="text/css">
+        
+          .maps ul {
+            margin:0; padding:0;
+            list-style: none;
+            width:100%; float:left;
+          }
+        
+          .maps ul li {
+            margin:0; padding:0;
+            list-style: none;
+            width:50%; float:left;
+          }
 
-          * {
-            box-sizing: border-box;
-          }
-      
-          .slider {
-              width: 50%;
-              margin: 100px auto;
-          }
-      
-          .slick-slide {
-            margin: 0px 20px;
-          }
-      
-          .slick-slide img {
-            width: 100%;
-          }
-      
-          .slick-prev:before,
-          .slick-next:before {
-            color: black;
-          }
-      
-      
-          .slick-slide {
-            transition: all ease-in-out .3s;
-            opacity: .2;
-          }
           
-          .slick-active {
-            opacity: .5;
-          }
-      
-          .slick-current {
-            opacity: 1;
-          }
+        
         </style>
 
       </head>
 
       <body>
 
-        <div id="map" style="width:100%;height:800px;"></div>
+        <div class="maps">
+          <ul>
+            <li>
+              <div id="map" style="width:100%;height:800px;"></div>
+            </li>
+            <li>
+              <div id="map1" style="width:100%;height:800px;"></div>
+            </li>
+          </ul>
+
+
+        </div>
 
 
         <script>
@@ -69,6 +59,12 @@ var mapDiv = document.getElementById('map'); // 'map'으로 선언해도 동일
 
 //옵션 없이 지도 객체를 생성하면 서울 시청을 중심으로 하는 16 레벨의 지도가 생성됩니다.
 var map = new naver.maps.Map(mapDiv);
+
+
+var mapDiv1 = document.getElementById('map1'); // 'map'으로 선언해도 동일
+
+//옵션 없이 지도 객체를 생성하면 서울 시청을 중심으로 하는 16 레벨의 지도가 생성됩니다.
+var map1 = new naver.maps.Map(mapDiv1);
         </script>
 
         <div class="footer"></div>
