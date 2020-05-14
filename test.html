@@ -66,6 +66,10 @@ var marker = new naver.maps.Marker({
     map: map
 });
 
+naver.maps.Event.addListener(map, 'click', function(e) {
+    marker.setPosition(e.latlng);
+});
+
 var mapDiv1 = document.getElementById('map1'); // 'map'으로 선언해도 동일
 
 //옵션 없이 지도 객체를 생성하면 서울 시청을 중심으로 하는 16 레벨의 지도가 생성됩니다.
