@@ -56,83 +56,43 @@
 
         <script>
 //지도를 삽입할 HTML 요소 또는 HTML 요소의 id를 지정합니다.
-var HOME_PATH = window.HOME_PATH || '.';
 
-var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
-    map = new naver.maps.Map('map', {
-        center: cityhall.destinationPoint(0, 300),
-        zoom: 15
-    }),
-    marker = new naver.maps.Marker({
-        map: map,
-        position: cityhall
-    });
 
-var contentString = [
-        '<div class="iw_inner">',
-        '   <h3>서울특별시청</h3>',
-        '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-        '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-        '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-        '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-        '   </p>',
-        '</div>'
-    ].join('');
-
-var infowindow = new naver.maps.InfoWindow({
-    content: contentString
+// 오버레이 추가
+var rect = new naver.maps.Rectangle({
+    map: map,
+    bounds: [126.96744,37.561622,126.9737437,37.5668781],
+    fillColor: '#ff0000',
+    fillOpacity: 0.4,
+    strokeWeight: 2,
+    strokeColor: '#ff0000'
 });
 
-naver.maps.Event.addListener(marker, "click", function(e) {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(map, marker);
-    }
+var polygon = new naver.maps.Polygon({
+    map: map,
+    paths: [
+        [126.9797895, 37.5670131],
+        [126.979215, 37.5649555],
+        [126.9766789, 37.5649082],
+        [126.9789515, 37.5637645],
+        [126.9785598, 37.5614914],
+        [126.9804949, 37.5632666],
+        [126.9827689, 37.5619065],
+        [126.9818039, 37.5639213],
+        [126.9837414, 37.5653719],
+        [126.9811162, 37.5651081]
+    ],
+    fillColor: '#ff0000',
+    fillOpacity: 0.4,
+    strokeWeight: 2,
+    strokeColor: '#ff0000'
 });
 
-infowindow.open(map1, marker);
-
-var HOME_PATH = window.HOME_PATH || '.';
-var cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
-    map1 = new naver.maps.Map('map1', {
-        center: cityhall,
-        zoom: 15
-    }),
-    marker = new naver.maps.Marker({
-        map1: map1,
-        position: cityhall
-    });
-
-var contentString = [
-        '<div class="iw_inner">',
-        '   <h3>서울특별시청</h3>',
-        '   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-        '       <img src="'+ HOME_PATH +'/img/example/hi-seoul.jpg" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-        '       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-        '       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-        '   </p>',
-        '</div>'
-    ].join('');
-
-var infowindow = new naver.maps.InfoWindow({
-    content: contentString,
-    maxWidth: 140,
-    backgroundColor: "#eee",
-    borderColor: "#2db400",
-    borderWidth: 5,
-    anchorSize: new naver.maps.Size(30, 30),
-    anchorSkew: true,
-    anchorColor: "#eee",
-    pixelOffset: new naver.maps.Point(20, -20)
-});
-
-naver.maps.Event.addListener(marker, "click", function(e) {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(map1, marker);
-    }
+var drawingManager;
+naver.maps.Event.once(map, 'init_stylemap', function() {
+    drawingManager = new naver.maps.drawing.DrawingManager({map: map});
+    drawingManager.addDrawing(rect, naver.maps.drawing.DrawingMode.RECTANGLE, 'my-id');
+    drawingManager.addDrawing(polygon, naver.maps.drawing.DrawingMode.POLYGON);
 });
 
         </script>
