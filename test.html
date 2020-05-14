@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="./slick/slick.css">
         <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
         <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=3gc59kryy1"></script>
+        <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=3gc59kryy1&submodules=panorama"></script>
 
         <style type="text/css">
         
@@ -40,15 +41,7 @@
 
       <body>
 
-        <div class="maps">
-          <ul>
-            <li>
-              <div id="map" style="width:100%;height:800px;"></div>
-            </li>
-            <li>
-              <div id="pano" style="width:100%;height:800px;"></div>
-            </li>
-          </ul>
+        <div id="pano" style="width:100%;height:400px;"></div>
 
 
         </div>
@@ -57,20 +50,73 @@
         <script>
 //지도를 삽입할 HTML 요소 또는 HTML 요소의 id를 지정합니다.
 
-var pano = null;
-
-naver.maps.onJSContentLoaded = function() {
-    // 아이디 혹은 지도 좌표로 파노라마를 표시할 수 있습니다.
-    pano = new naver.maps.Panorama("pano", {
-        // panoId: "OregDk87L7tsQ35dcpp+Mg==",
-        position: new naver.maps.LatLng(37.3599605, 127.1058814),
-        pov: {
-            pan: -135,
-            tilt: 29,
-            fov: 100
-        }
-    });
+var panoramaOptions = {
+    position: new naver.maps.LatLng(37.3599605, 127.1058814),
+    size: new naver.maps.Size(800, 600),
+    pov: {
+        pan: -135,
+        tilt: 29,
+        fov: 100
+    }
 };
+
+var pano = new naver.maps.Panorama(document.getElementById("pano"), {
+    position: new naver.maps.LatLng(37.3599605, 127.1058814)
+});
+
+var pano = new naver.maps.Panorama("pano", {
+    position: new naver.maps.LatLng(37.3599605, 127.1058814)
+});
+
+naver.maps.Event.addListener(pano, "pano_changed", function() {
+    console.log("PanoramaLocation", pano.getLocation()); // panoId, title, address, coord, photodate
+});
+
+var pano = new naver.maps.Panorama("pano", {
+    position: new naver.maps.LatLng(37.3599605, 127.1058814)
+});
+
+naver.maps.Event.addListener(pano, "pov_changed", function() {
+    console.log("PanoramaPov", pano.getPov()); // pan, tilt, fov
+});
+
+var pano = new naver.maps.Panorama("pano", {
+    position: new naver.maps.LatLng(37.3599605, 127.1058814),
+    pov: {
+        pan: -135,
+        tilt: 29,
+        fov: 100
+    },
+    visible: false
+});
+
+naver.maps.Event.addListener(pano, "init", function() {
+    pano.setVisible(true);
+});
+
+naver.maps.Event.addListener(pano, "pano_status", function(status) {
+    $("#pano_status_cell").text(status + ", " + pano.getPanoId());
+});
+
+naver.maps.Event.addListener(pano, "pano_changed", function() {
+    $("#id_cell").text(pano.getPanoId());
+    $("#position_cell").text(pano.getPosition());
+    $("#roadname_cell").text(pano.getLocation().title);
+    $("#address_cell").text(pano.getLocation().address);
+    $("#photodate_cell").text(pano.getLocation().photodate);
+});
+
+naver.maps.Event.addListener(pano, "pov_changed", function() {
+    $("#pan_cell").text(pano.getPov().pan);
+    $("#tilt_cell").text(pano.getPov().tilt);
+    $("#fov_cell").text(pano.getPov().fov);
+
+    $("#zoom_cell").text(pano.getZoom());
+    $("#min_zoom_cell").text(pano.getMinZoom());
+    $("#max_zoom_cell").text(pano.getMaxZoom());
+});
+
+
         </script>
 
         <div class="footer"></div>
