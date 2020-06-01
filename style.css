@@ -1,6 +1,16 @@
-body {
-	font: 24px/30px 'Noto Sans CJK KR', Noto Sans KR, sans-serif
-}
+*{ margin:0; padding:0;}
+
+
+html, body{ font-size:16px; }
+h1{ font-family: 'Cute Font', cursive; font-size: 3.0em; text-align:center; transition: 0.35s;}
+h2{ font-family: 'Nanum Gothic', sans-serif; font-size: 3em; color:gray; text-align:center; transition: 0.35s;}
+h3{ font-family: 'Nanum Gothic', sans-serif; font-size: 2em; color:white; text-align:center;  transition: 0.35s;}
+h4{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color:black; text-align:left;  transition: 0.35s;}
+h5{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.4em; color:black; text-align:left;  transition: 0.35s;}
+a{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; }
+img{ vertical-align:top; }
+
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,400,300);
  .frame {
 	 position: absolute;
@@ -130,4 +140,18 @@ body {
  .circle-small .text .small {
 	 font-size: 12px;
 	 color: #648192;
+}
+
+
+
+@media only screen and (min-width:1200px) {
+	.titletext { font-size: 2em; }  
+}
+
+@media only screen and (max-width:991px) {
+	.titletext { font-size: 1.6em; }  
+}
+
+@media only screen and (max-width:800px) {
+	.titletext { font-size: 0.4em; }  
 }
