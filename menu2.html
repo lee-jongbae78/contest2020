@@ -3,11 +3,12 @@
       <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>contest 2020</title>
         <!-- jquery -->
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">        
 
          <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
@@ -15,46 +16,7 @@
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./slick/slick.css">
         <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
-
-        <style type="text/css">
-
-          * {
-            box-sizing: border-box;
-          }
-      
-          .slider {
-              width: 50%;
-              margin: 100px auto;
-          }
-      
-          .slick-slide {
-            margin: 0px 20px;
-          }
-      
-          .slick-slide img {
-            width: 100%;
-          }
-      
-          .slick-prev:before,
-          .slick-next:before {
-            color: black;
-          }
-      
-      
-          .slick-slide {
-            transition: all ease-in-out .3s;
-            opacity: .2;
-          }
-          
-          .slick-active {
-            opacity: .5;
-          }
-      
-          .slick-current {
-            opacity: 1;
-          }
-        </style>
-
+        <link rel="stylesheet" href="css/bootstrap.css">
       </head>
 
       <body>
@@ -63,7 +25,7 @@
             <logo>
                 <ul>
                   <li><a href="index.html"><i class="fa fa-spinner fa-spin fa-fw"></i></a></li>
-                  <li><h2>준비운동</h2></li>
+                  <li><h2 class="titletext">준비운동</h2></li>
                 </ul>
               </logo>
               <nav>
@@ -90,39 +52,64 @@
           </header>
 
 
-          <div class="tm-button">
-            <ul>
-                <li>준비운동 하나 - 앉았다 일어나기</li>
-                &nbsp;&nbsp;&nbsp;<li></li><a href="./menu2-1.html"><button class="button button1" type="button">1</button></a></li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-2.html"><button class="button button1" type="button">2</button></a></li>
-                &nbsp;&nbsp;&nbsp;<li></li><a href="./menu2-3.html"><button class="button button1" type="button">3</button></a></li>
+          <div class="container">
+            <div class="header"><h4>준비운동 선택하기</h4></div>
 
-            </ul> 
+  
+          <div class="row row-cols-1 row-cols-md-4">
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="images/menu2-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">무릎 운동</h5>
+                  <p class="card-text">발바닥 모양을 11자로 선 자세에서 무릎을 직각으로 굽혀 앉는다. 척추는 바로 세우고 손은 허리에 대고 양 무릎이 평행하게 왼쪽으로 돌려준다. 세 바퀴 돌리고 반대쪽으로 돌려준다.</p>
+                  <div class="text-right">
+                    <a href="menu2-1.html" class="btn btn-success">시작하기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="images/menu2-2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">허리 운동</h5>
+                  <p class="card-text">발바닥 모양을 11자로 선 자세에서 무릎을 직각으로 굽혀 앉는다. 척추는 바로 세우고 손은 허리에 대고 양 무릎이 평행하게 왼쪽으로 돌려준다. 세 바퀴 돌리고 반대쪽으로 돌려준다.</p>
+                  <div class="text-right">
+                    <a href="menu2-2.html" class="btn btn-success">시작하기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="images/menu2-2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">어깨 운동</h5>
+                  <p class="card-text">어깨 돌리기 체조는 유연성을 높여 어깨의 가동 범위를 넓혀줄 뿐만 아니라 어깨 근육을 강화시킬 수 있는 좋은 어깨 운동입니다.</p>
+                  <div class="text-right">
+                    <a href="menu2-3.html" class="btn btn-success">시작하기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <ul>
-                <li>준비운동 &nbsp;&nbsp;&nbsp;둘 - 앉았다 일어나기</li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-1.html"><button class="button button1" type="button">1</button></a></li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-2.html"><button class="button button1" type="button">2</button></a></li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-3.html"><button class="button button1" type="button">3</button></a></li>
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="images/menu2-2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">팔벌려뛰기 운동</h5>
+                  <p class="card-text">1) 똑바로 서서 시작합니다. 2) 점프하면서 다리를 어깨너비보다 넓게 벌리고, 팔을 벌려 머리 위로 올려줍니다. 3) 다시 점프하여 다리를 모으고, 팔을 내리면 1회가 완료됩니다.</p>
+                  <div class="text-right">
+                    <a href="menu2-4.html" class="btn btn-success">시작하기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            </ul>           
-            
-            <ul>
-                <li>준비운동 &nbsp;&nbsp;&nbsp;셋 - 앉았다 일어나기</li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-1.html"><button class="button button1" type="button">1</button></a></li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-2.html"><button class="button button1" type="button">2</button></a></li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-3.html"><button class="button button1" type="button">3</button></a></li>
-
-            </ul> 
-
-            <ul>
-                <li>준비운동 &nbsp;&nbsp;&nbsp;넷 - 앉았다 일어나기</li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-1.html"><button class="button button1" type="button">1</button></a></li>
-                &nbsp;&nbsp;&nbsp; <li></li><a href="./menu2-2.html"><button class="button button1" type="button">2</button></a></li>
-                &nbsp;&nbsp;&nbsp;<li></li><a href="./menu2-3.html"><button class="button button1" type="button">3</button></a></li>
-
-            </ul> 
-          </div>
+            </div>
 
 
           <br>
