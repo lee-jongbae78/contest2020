@@ -5,7 +5,7 @@ html, body{   margin-top: 80px; font-size:16px; }
 h1{ font-family: 'Cute Font', cursive; font-size: 3.0em; text-align:center; transition: 0.35s;}
 h2{ font-family: 'Nanum Gothic', sans-serif; font-size: 2.5em; color:gray; text-align:center; transition: 0.35s;}
 h3{ font-family: 'Nanum Gothic', sans-serif; font-size: 2.0em; color:white; text-align:center;  transition: 0.35s;}
-h4{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color:black; text-align:left;  transition: 0.35s;}
+h4{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color:black; text-align:left;  transition: 0.35s; }
 h5{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.4em; color:black; text-align:left;  transition: 0.35s;}
 a{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; }
 img{ vertical-align:top; }
@@ -24,7 +24,7 @@ img{ vertical-align:top; }
 /*티처블머신 화면 높이 수정*/
 #canvas{ margin-top: 20px; margin-left: 20px; width: 80%;}
  
- .sub-menu{ margin-top:20px; text-align: center;}
+ .sub-menu{ margin-top:0px; text-align: center;}
 
  #video1{ width: 100%; }
 
@@ -79,8 +79,8 @@ h5{
      position: fixed;
      bottom: 30%;
      right: 20%;
-     width: 400px;
-     height: 400px;
+     width: 300px;
+     height: 300px;
      margin-bottom: -100px;
      margin-right: -200px;
      border-radius: 2px;
@@ -207,10 +207,11 @@ h5{
      color: #648192;
   }
 
-  .btn{
+
+  .btn2{
     background-color: red;
     color: white;
-    width: 25%;
+    width: 15%;
     height: 60px;
     border: 0;
     outline: 0;
@@ -219,7 +220,6 @@ h5{
     cursor: pointer;
 
   }
-
 
   
 .button1 {
