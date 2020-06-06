@@ -17,45 +17,6 @@
         <link rel="stylesheet" type="text/css" href="./slick/slick.css">
         <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
 
-        <style type="text/css">
-
-          * {
-            box-sizing: border-box;
-          }
-      
-          .slider {
-              width: 50%;
-              margin: 100px auto;
-          }
-      
-          .slick-slide {
-            margin: 0px 20px;
-          }
-      
-          .slick-slide img {
-            width: 100%;
-          }
-      
-          .slick-prev:before,
-          .slick-next:before {
-            color: black;
-          }
-      
-      
-          .slick-slide {
-            transition: all ease-in-out .3s;
-            opacity: .2;
-          }
-          
-          .slick-active {
-            opacity: .5;
-          }
-      
-          .slick-current {
-            opacity: 1;
-          }
-        </style>
-
       </head>
 
       <body>
@@ -149,7 +110,7 @@
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
       
               // the link to your model provided by Teachable Machine export panel
-              const URL = "https://lee-jongbae78.github.io/contest2020/my_model/";
+              const URL = "my_model2/";
 
               let model, webcam, ctx, labelContainer, maxPredictions;
       
@@ -187,7 +148,7 @@
                   window.requestAnimationFrame(loop);
               }
               var progress = 327
-              var status = "stand"
+              var status = "ready"
               var count = 0
               async function predict() {
                   // Prediction #1: run input through posenet
@@ -196,7 +157,7 @@
                   // Prediction 2: run input through teachable machine classification model
                   const prediction = await model.predict(posenetOutput);
                   if (prediction[0].probability.toFixed(2) > 0.90) {
-                      if (status == "squat") {
+                      if (status == "hit") {
                           count++
                           var audio = new Audio(count % 10 + '.mp3');
                           audio.play();
@@ -210,11 +171,11 @@
                             myFunction()
                           }
                       }
-                      status = "stand"
+                      status = "ready"
                   } else if (prediction[1].probability.toFixed(2) == 1.00) {
-                      status = "squat"
+                      status = "hit"
                   } else if (prediction[2].probability.toFixed(2) == 1.00) {
-                      if (status == "squat" || status == "stand") {
+                      if (status == "hit" || status == "ready") {
                           var audio = new Audio('bent.mp3');
                           audio.play();
                       }

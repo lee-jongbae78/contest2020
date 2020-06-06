@@ -17,7 +17,7 @@ img{ vertical-align:top; }
 
 .titletext { font-size: 1.0em;     margin-top: 18px;}
 .subtitle { text-align:center;  margin-top: 10px;}
-
+.classmenu { font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color: #f0a500; text-align:left;  transition: 0.35s;}
 .card h-100{ position: relative; margin:0 auto;}
 
 

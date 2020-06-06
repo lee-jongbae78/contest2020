@@ -58,8 +58,6 @@
               <div class="sub-menu">
                   <h5>준비운동</h5>
                 <button class="btn btn-primary"type="button" onclick="init()">앉아 일어나!</button>
-                <button class="btn btn-primary"type="button" onclick="init()">앉아 일어나!</button>
-                <button class="btn btn-primary"type="button" onclick="init()">앉아 일어나!</button>
 
                 </div>
           </div>
@@ -89,6 +87,8 @@
 
             <script>
                 function myFunction() {
+                var audio = new Audio('complite.mp3');
+                audio.play();
                   alert("성공하셨습니다. 다음 단계로 이동");
                 }
                 </script>
@@ -169,7 +169,11 @@
                           $('.progress').css('stroke-dashoffset', progress);
                           $('#counter').html(count);
                           if(count == "8"){
+                              var audio = new Audio(count+ +'.mp3');
+                            audio.play();
+
                             myFunction()
+
                           }
                       }
                       status = "stand"
