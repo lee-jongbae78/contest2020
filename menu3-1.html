@@ -25,7 +25,7 @@
             <logo>
                    <ul>
                      <li><a href="index.html"><i class="fa fa-spinner fa-spin fa-fw"></i></a></li>
-                     <li><h2 class="titletext">준비운동</h2></li>
+                     <li><h2 class="titletext">종목선택</h2></li>
                     </ul>
            </logo>
   
@@ -56,8 +56,8 @@
 
           <div class="con-1-1">
               <div class="sub-menu">
-                  <h5>준비운동</h5>
-                <button class="btn btn-primary"type="button" onclick="init()">앉아 일어나!</button>
+                  <h5>태권 동작</h5>
+                <button class="btn btn-primary"type="button" onclick="init()">발차기</button>
 
                 </div>
           </div>
@@ -67,7 +67,7 @@
                 <div class="frame">
                     <div class="center">
                         <div class="headline">
-                            <div class="small">앉았다</div>일어나기
+                            <div class="small">발차기</div>앞차기
                         </div>
                         <div class="circle-big">
                             <div class="text">
@@ -149,7 +149,7 @@
                   window.requestAnimationFrame(loop);
               }
               var progress = 327
-              var status = "stand"
+              var status = "ready"
               var count = 0
               async function predict() {
                   // Prediction #1: run input through posenet
@@ -158,7 +158,7 @@
                   // Prediction 2: run input through teachable machine classification model
                   const prediction = await model.predict(posenetOutput);
                   if (prediction[0].probability.toFixed(2) > 0.90) {
-                      if (status == "squat") {
+                      if (status == "hit") {
                           count++
                           var audio = new Audio(count % 10 + '.mp3');
                           audio.play();
@@ -176,15 +176,11 @@
 
                           }
                       }
-                      status = "stand"
+                      status = "ready"
                   } else if (prediction[1].probability.toFixed(2) == 1.00) {
-                      status = "squat"
+                      status = "hit"
                   } else if (prediction[2].probability.toFixed(2) == 1.00) {
-                      if (status == "squat" || status == "stand") {
-                          var audio = new Audio('bent.mp3');
-                          audio.play();
-                      }
-                      status = "bent"
+                     
                   }
                   for (let i = 0; i < maxPredictions; i++) {
                       const classPrediction =
