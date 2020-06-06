@@ -16,6 +16,7 @@ img{ vertical-align:top; }
 #logo {margin-top: 18px;}
 
 .titletext { font-size: 1.0em;     margin-top: 18px;}
+.subtitle { text-align:center;  margin-top: 10px;}
 
 .card h-100{ position: relative; margin:0 auto;}
 
@@ -23,7 +24,7 @@ img{ vertical-align:top; }
 /*티처블머신 화면 높이 수정*/
 #canvas{ margin-top: 20px; margin-left: 20px; width: 80%;}
  
- .sub-menu{ margin-top: margin-left: 20px; text-align: center;}
+ .sub-menu{ margin-top:20px; text-align: center;}
 
  #video1{ width: 100%; }
 
