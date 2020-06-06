@@ -15,7 +15,7 @@ img{ vertical-align:top; }
 
 #logo {margin-top: 18px;}
 
-.titletext { font-size: 1.0em;}
+.titletext { font-size: 1.0em;     margin-top: 18px;}
 
 .card h-100{ position: relative; margin:0 auto;}
 
