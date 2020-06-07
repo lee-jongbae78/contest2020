@@ -54,17 +54,13 @@
             
 
           </header>
-
-          <div class="container">
-              
+            
             <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="init()">START</button>
             </div>
+
             <div class="frame-top"> 
 
                 <div class="frame">
-
-                    <div class="sub-menu">
-
 
                     <div class="center">
                         <div class="headline">
@@ -85,7 +81,6 @@
                 <div id="label-container">                       
                 </div> 
             </div>
-        </div>
 
 
             <script>
@@ -161,7 +156,7 @@
                   await predict();
                   window.requestAnimationFrame(loop);
               }
-              var progress = 360
+              var progress = 327
               var status = "stand"
               var count = 0
               async function predict() {
@@ -177,7 +172,7 @@
                           audio.play();
                           progress = progress-45
                           if(progress <= 0) {
-                              progress = 360-45
+                              progress = 327-45
                           }
                           $('.progress').css('stroke-dashoffset', progress);
                           $('#counter').html(count);
@@ -189,7 +184,7 @@
                       status = "stand"
                   } else if (prediction[1].probability.toFixed(2) == 1.00) {
                       status = "squat"
-                  } else if (prediction[2].probability.toFixed(2) > 0.50) {
+                  } else if (prediction[2].probability.toFixed(2) > 0.70) {
                       if (status == "squat" || status == "stand") {
                           var audio = new Audio('bent.mp3');
                           audio.play();
