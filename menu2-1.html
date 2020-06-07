@@ -121,7 +121,7 @@
               // More API functions here:
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
       
-              // the link to your model provided by Teachable Machine export panel
+              // "https://lee-jongbae78.github.io/contest2020/my_model/"
               const URL = "https://lee-jongbae78.github.io/contest2020/my_model/";
 
               let model, webcam, ctx, labelContainer, maxPredictions;
@@ -187,7 +187,7 @@
                       status = "stand"
                   } else if (prediction[1].probability.toFixed(2) == 1.00) {
                       status = "squat"
-                  } else if (prediction[2].probability.toFixed(2) == 1.00) {
+                  } else if (prediction[2].probability.toFixed(2) > 0.50) {
                       if (status == "squat" || status == "stand") {
                           var audio = new Audio('bent.mp3');
                           audio.play();

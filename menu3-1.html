@@ -88,11 +88,19 @@
 
             <script>
                 function myFunction() {
+                var audio = new Audio('8.mp3');
+                audio.play();
+                setTimeout(alert1, 300) ;
+                }
+            </script>
+
+            <script>
+                function alert1() {
                 var audio = new Audio('complite.mp3');
                 audio.play();
-                  alert("성공하셨습니다. 다음 단계로 이동");
+                alert("성공하셨습니다. 다음 단계로 이동");
                 }
-                </script>
+            </script>
 
           <!-- Optional JavaScript -->
           <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -170,9 +178,6 @@
                           $('.progress').css('stroke-dashoffset', progress);
                           $('#counter').html(count);
                           if(count == "8"){
-                              var audio = new Audio(count+ +'.mp3');
-                            audio.play();
-
                             myFunction()
 
                           }
