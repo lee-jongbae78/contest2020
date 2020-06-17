@@ -20,6 +20,12 @@ img{ vertical-align:top; }
 .classmenu { font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color: #f0a500; text-align:left;  transition: 0.35s;}
 .card h-100{ position: relative; margin:0 auto;}
 
+.modalbutton{ background: gray;  padding: 10px 30px; cursor: pointer; }
+.modalbutton p { text-align: right;}
+
+#modal01{ width: 400px; height: 600px; overflow: hidden; background: #f1f1f1; box-shadow: 0 0 20px black; border-radius: 8px; position: absolute; top: 56%; left:50%; transform: translate(-50%, -50%); z-index:99; padding:10px; text-align: center; display: none;}
+
+
 
 /*티처블머신 화면 높이 수정*/
 #canvas{ margin-top: -50px; margin-left: 20px; width: 40%;}

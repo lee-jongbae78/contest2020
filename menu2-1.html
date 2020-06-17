@@ -96,10 +96,28 @@
                 var audio = new Audio('complite.mp3');
                 audio.play();
                 alert("성공하셨습니다. 다음 단계로 이동");
+                pop1();
             }
             </script>
 
+            <div id ="modal01">
+                <img src="./images/3grade/3 김포 덕포진001.jpg" class="mr-3 imgpop" alt="...">
+                <a onclick ="pop1()" class="close">close</a>
+            </div>
 
+            <script type="text/javascript">
+                var c = 0;
+                function pop1(){
+                  if(c == 0){
+                    document.getElementById("modal01").style.display = "block";
+                    c = 1;
+                  }
+                  else {
+                    document.getElementById("modal01").style.display = "none";
+                    c = 0;
+                  }
+                }
+              </script>
 
           <!-- Optional JavaScript -->
           <!-- jQuery first, then Popper.js, then Bootstrap JS -->
