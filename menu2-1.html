@@ -85,7 +85,7 @@
 
             <script>
                 function myFunction() {
-                var audio = new Audio('8.mp3');
+                var audio = new Audio("./audios/8.mp3");
                 audio.play();
                 setTimeout(nextMenu1, 300) ;
                 }
@@ -93,14 +93,14 @@
 
            <script>
                 function nextMenu1() {
-                var audio = new Audio('complite.mp3');
+                var audio = new Audio("./audios/finishnext.mp");
                 audio.play();
                 pop1();                
             }
             </script>
 
             <div id ="modal01">
-                <img src="./images/3grade/3 김포 덕포진001.jpg" class="mr-3 imgpop" alt="...">
+                <img src="./images/icon1.jpg" class="mr-3 imgpop" alt="...">
                 <a onclick ="pop1()" class="close">close</a>
             </div>
 
@@ -185,7 +185,7 @@
                   if (prediction[0].probability.toFixed(2) > 0.80) {
                       if (status == "squat") {
                           count++
-                          var audio = new Audio(count % 10 + '.mp3');
+                          var audio = new Audio(count % 10 + './audios/.mp3');
                           audio.play();
                           progress = progress-45
                           if(progress <= 0) {
@@ -203,7 +203,7 @@
                       status = "squat"
                   } else if (prediction[2].probability.toFixed(2) > 0.80) {
                       if (status == "squat" || status == "stand") {
-                          var audio = new Audio('bent.mp3');
+                          var audio = new Audio('.audios/bent.mp3');
                           audio.play();
                       }
                       status = "bent"
