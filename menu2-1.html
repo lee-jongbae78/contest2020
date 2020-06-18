@@ -185,12 +185,15 @@
 
                               
                   if (prediction[0].probability.toFixed(2) > 0.90) {
+                    audio.pause();
                     var audio = new Audio("./audios/start.mp3");
                     audio.play();
+                    status = "start"
 
                   }
 
                   if (prediction[1].probability.toFixed(2) > 0.80) {
+                        audio.pause();
                       if (status == "squat") {
                           count++
                           var audio = new Audio('./audios/' + count % 10 + '.mp3');
@@ -210,6 +213,7 @@
                   } else if (prediction[2].probability.toFixed(2) == 1.00) {
                       status = "squat"
                   } else if (prediction[3].probability.toFixed(2) > 0.80) {
+                    audio.pause();
                       if (status == "stand" || status == "bent") {
                           var audio = new Audio(".audios/bent.mp3");
                           audio.play();
