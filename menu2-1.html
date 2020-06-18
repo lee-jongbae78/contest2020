@@ -77,7 +77,10 @@
                         </div>
                     </div>
                 </div>
-                <div><canvas id="canvas"></canvas></div>
+                <div>
+                    <canvas id="canvas"></canvas>
+                    <canvas id="exercise"> exercise</canvas>
+                </div>
                 <div id="label-container"></div>
             </div>
 
@@ -117,6 +120,14 @@
                 }
               </script>
 
+
+        <script>                             
+            function startnar(){
+                var audio = new Audio("./audios/start.mp3");
+                audio.play();
+            }
+        </script>
+
           <!-- Optional JavaScript -->
           <!-- jQuery first, then Popper.js, then Bootstrap JS -->
           <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -142,7 +153,6 @@
               async function init() {
                   const modelURL = URL + "model.json";
                   const metadataURL = URL + "metadata.json";
-      
                   // load the model and metadata
                   // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
                   // Note: the pose library adds a tmPose object to your window (window.tmPose)
@@ -165,6 +175,11 @@
                   for (let i = 0; i < maxPredictions; i++) { // and class labels
                       labelContainer.appendChild(document.createElement("div"));
                   }
+
+                  //운동 시작하는 음성
+
+                  startnar();
+
               }
       
               async function loop(timestamp) {
@@ -175,7 +190,11 @@
               var progress = 360
               var status = "start"
               var count = 0
+
+
               async function predict() {
+   
+
                   // Prediction #1: run input through posenet
                   // estimatePose can take in an image, video or canvas html element
                   const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
@@ -185,8 +204,7 @@
                               
                   if (prediction[0].probability.toFixed(2) == 1.00) {
 
-                        var audio = new Audio("./audios/start.mp3");
-                        audio.play();
+
                     status = "start"
 
                   } else if (prediction[1].probability.toFixed(2) > 0.80) {
@@ -237,6 +255,7 @@
                   }
               }
           </script>
+
 
     </div>
       </body>

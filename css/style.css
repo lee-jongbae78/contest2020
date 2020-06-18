@@ -26,10 +26,10 @@ img{ vertical-align:top; }
 #modal01{ width: 400px; height: 600px; overflow: hidden; background: #f1f1f1; box-shadow: 0 0 20px black; border-radius: 8px; position: absolute; top: 56%; left:50%; transform: translate(-50%, -50%); z-index:99; padding:10px; text-align: center; display: none;}
 
 
-
 /*티처블머신 화면 높이 수정*/
-#canvas{ margin-top: -50px; margin-left: 20px; width: 40%;}
- 
+#canvas{ margin-top: -50px; margin-left: 20px; width: 40%; display: inline-flex;}
+#exercise{ height:500px; width: 30%; background: gray;  display: inline-flex; }
+
  .sub-menu{ margin-top:-60px; text-align: right; margin-right: 11%;}
 
  #video1{ width: 100%; }
