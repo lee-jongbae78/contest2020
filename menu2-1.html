@@ -93,7 +93,7 @@
 
            <script>
                 function nextMenu1() {
-                var audio = new Audio("./audios/finishnext.mp");
+                var audio = new Audio("./audios/finishnext.mp3");
                 audio.play();
                 pop1();                
             }
@@ -173,7 +173,7 @@
                   await predict();
                   window.requestAnimationFrame(loop);
               }
-              var progress = 327
+              var progress = 360
               var status = "stand"
               var count = 0
               async function predict() {
@@ -185,11 +185,11 @@
                   if (prediction[0].probability.toFixed(2) > 0.80) {
                       if (status == "squat") {
                           count++
-                          var audio = new Audio(count % 10 + './audios/.mp3');
+                          var audio = new Audio('./audios/' + count % 10 + '.mp3');
                           audio.play();
                           progress = progress-45
                           if(progress <= 0) {
-                              progress = 360-45
+                              progress = 0
                           }
                           $('.progress').css('stroke-dashoffset', progress);
                           $('#counter').html(count);
@@ -202,8 +202,8 @@
                   } else if (prediction[1].probability.toFixed(2) == 1.00) {
                       status = "squat"
                   } else if (prediction[2].probability.toFixed(2) > 0.80) {
-                      if (status == "squat" || status == "stand") {
-                          var audio = new Audio('.audios/bent.mp3');
+                      if (status == "stand" || status == "bent") {
+                          var audio = new Audio(".audios/bent.mp3");
                           audio.play();
                       }
                       status = "bent"
