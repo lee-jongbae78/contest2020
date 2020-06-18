@@ -175,7 +175,6 @@
               var progress = 360
               var status = "start"
               var count = 0
-              var playing = false;
               async function predict() {
                   // Prediction #1: run input through posenet
                   // estimatePose can take in an image, video or canvas html element
@@ -184,15 +183,12 @@
                   const prediction = await model.predict(posenetOutput);
 
                               
-                  if (prediction[0].probability.toFixed(2)  > 0.80) {
-                      playing = true;
-                      if(!playing){
-                        audio.stop();
+                  if (prediction[0].probability.toFixed(2) == 1.00) {
+
                         var audio = new Audio("./audios/start.mp3");
                         audio.play();
-                        playing = false;
-                      }
                     status = "start"
+
                   } else if (prediction[1].probability.toFixed(2) > 0.80) {
                       if (status == "squat") {
                           count++
@@ -210,7 +206,7 @@
                           }
                       }
                       status = "stand"
-                  } else if (prediction[2].probability.toFixed(2) > 0.80) {
+                  } else if (prediction[2].probability.toFixed(2) > 0.70) {
                       status = "squat"
                   } else if (prediction[3].probability.toFixed(2) > 0.80) {
                       if (status == "stand" || status == "bent") {
