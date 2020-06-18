@@ -8,8 +8,9 @@
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
 
-    // the link to your model provided by Teachable Machine export panel
-    const URL = "https://lee-jongbae78.github.io/contest2020/my_model/";
+    // 
+    const URL = "https://lee-jongbae78.github.io/contest2020/my_model_21/";
+
     let model, webcam, ctx, labelContainer, maxPredictions;
 
     async function init() {
@@ -23,7 +24,7 @@
         maxPredictions = model.getTotalClasses();
 
         // Convenience function to setup a webcam
-        const size = 200;
+        const size = 300;
         const flip = true; // whether to flip the webcam
         webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
         await webcam.setup(); // request access to the webcam
@@ -45,33 +46,73 @@
         await predict();
         window.requestAnimationFrame(loop);
     }
+    var progress = 360
+    var status = "start"
+    var count = 0
+    var playing = false;
 
     async function predict() {
-        // Prediction #1: run input through posenet
-        // estimatePose can take in an image, video or canvas html element
-        const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
-        // Prediction 2: run input through teachable machine classification model
-        const prediction = await model.predict(posenetOutput);
+                  // Prediction #1: run input through posenet
+                  // estimatePose can take in an image, video or canvas html element
+                  const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
+                  // Prediction 2: run input through teachable machine classification model
+                  const prediction = await model.predict(posenetOutput);
 
-        for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
+                              
+                  if (prediction[0].probability.toFixed(2)  == 1.00) {
+                      playing = true;
+                      if(!playing){
+                        audio.stop();
+                        var audio = new Audio("./audios/start.mp3");
+                        audio.play();
+                        playing = false;
+                      }
+                    status = "start"
+                  } else if (prediction[1].probability.toFixed(2) > 0.80) {
+                      if (status == "squat") {
+                          count++
+                          var audio = new Audio('./audios/' + count % 10 + '.mp3');
+                          audio.play();
+                          progress = progress-45
+                          if(progress <= 0) {
+                              progress = 0
+                          }
+                          $('.progress').css('stroke-dashoffset', progress);
+                          $('#counter').html(count);
+                          if(count == "8"){
+                            myFunction()
 
-        // finally draw the poses
-        drawPose(pose);
-    }
-
-    function drawPose(pose) {
-        if (webcam.canvas) {
-            ctx.drawImage(webcam.canvas, 0, 0);
-            // draw the keypoints and skeleton
-            if (pose) {
-                const minPartConfidence = 0.5;
-                tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-                tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
-            }
-        }
-    }
-</script>
+                          }
+                      }
+                      status = "stand"
+                  } else if (prediction[2].probability.toFixed(2) == 1.00) {
+                      status = "squat"
+                  } else if (prediction[3].probability.toFixed(2) > 0.80) {
+                      if (status == "stand" || status == "bent") {
+                          var audio = new Audio(".audios/bent.mp3");
+                          audio.play();
+                      }
+                      status = "bent"
+                  }
+                  for (let i = 0; i < maxPredictions; i++) {
+                      const classPrediction =
+                          prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                      labelContainer.childNodes[i].innerHTML = classPrediction;
+                  }
+      
+                  // finally draw the poses
+                  drawPose(pose);
+              }
+      
+              function drawPose(pose) {
+                  if (webcam.canvas) {
+                      ctx.drawImage(webcam.canvas, 0, 0);
+                      // draw the keypoints and skeleton
+                      if (pose) {
+                          const minPartConfidence = 0.5;
+                          tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+                          tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+                      }
+                  }
+              }
+          </script>
