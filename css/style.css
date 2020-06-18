@@ -28,7 +28,6 @@ img{ vertical-align:top; }
 
 /*티처블머신 화면 높이 수정*/
 #canvas{ margin-top: -50px; margin-left: 20px; width: 40%; display: inline-flex;}
-#exercise{ height:500px; width: 30%; background: gray;  display: inline-flex; }
 
  .sub-menu{ margin-top:-60px; text-align: right; margin-right: 11%;}
 
