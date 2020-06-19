@@ -55,7 +55,8 @@
 
           </header>
             
-            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="init()">START</button></div>
+            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="initvoice
+            ()">START</button></div>
 
             <div id ="ai">
                 <canvas id="canvas"></canvas>
@@ -81,7 +82,10 @@
 
             <div id="label-container"></div>
 
-      
+
+            <canvas id="canvas2"></canvas>
+            <div id="label-container2"></div>
+
 
 
 
@@ -139,8 +143,12 @@
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
               integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
               crossorigin="anonymous"></script>
+
+              <!--티쳐블머신 관련-->
               <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
               <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+
           <script type="text/javascript">
               // More API functions here:
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
@@ -148,7 +156,7 @@
               // 
               const URL = "https://lee-jongbae78.github.io/contest2020/my_model_21/";
 
-              let model, webcam, ctx, labelContainer, maxPredictions;
+              let model, webcam, ctx, labelContainer, maxPredictions, labelContainer2;
       
               async function init() {
                   const modelURL = URL + "model.json";
@@ -254,7 +262,59 @@
                       }
                   }
               }
+
+
+              async function createModel() {
+    const checkpointURL = URL + "model1.json"; // model topology
+    const metadataURL = URL + "metadata1.json"; // model metadata
+
+    const recognizer = speechCommands.create(
+        "BROWSER_FFT", // fourier transform type, not useful to change
+        undefined, // speech commands vocabulary feature, not useful for your models
+        checkpointURL,
+        metadataURL);
+
+    // check that model and metadata are loaded via HTTPS requests.
+    await recognizer.ensureModelLoaded();
+
+    return recognizer;
+}
+
+async function initvoice() {
+    const recognizer = await createModel();
+    const classLabels = recognizer.wordLabels(); // get class labels
+    const labelContainer2 = document.getElementById("label-container2");
+    for (let i = 0; i < classLabels.length; i++) {
+        labelContainer2.appendChild(document.createElement("div"));
+    }
+
+    // listen() takes two arguments:
+    // 1. A callback function that is invoked anytime a word is recognized.
+    // 2. A configuration object with adjustable fields
+    recognizer.listen(result => {
+        const scores = result.scores; // probability of prediction for each class
+        // render the probability scores per class
+        for (let i = 0; i < classLabels.length; i++) {
+            const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+            labelContainer2.childNodes[i].innerHTML = classPrediction;
+        }
+    }, {
+        includeSpectrogram: true, // in case listen should return result.spectrogram
+        probabilityThreshold: 0.75,
+        invokeCallbackOnNoiseAndUnknown: true,
+        overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
+    });
+
+    // Stop the recognition in 5 seconds.
+    // setTimeout(() => recognizer.stopListening(), 5000);
+}
+
+
+
           </script>
+
+
+
 
 
     </div>
