@@ -55,13 +55,11 @@
 
           </header>
             
-            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="init()">START</button>
-            </div>
+            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="init()">START</button></div>
 
-            <div class="frame-top"> 
-
-                <div class="frame">
-
+            <div id ="ai">
+                <canvas id="canvas"></canvas>
+                <div id="frame">
                     <div class="center">
                         <div class="headline">
                             <div class="small">앉았다</div>일어나기
@@ -77,9 +75,14 @@
                         </div>
                     </div>
                 </div>
-                <div><canvas id="canvas"></canvas></div>
-                <div id="label-container"></div>
             </div>
+
+
+
+            <div id="label-container"></div>
+
+      
+
 
 
             <script>
@@ -223,9 +226,9 @@
                       status = "stand"
                   } else if (prediction[2].probability.toFixed(2) > 0.70) {
                       status = "squat"
-                  } else if (prediction[3].probability.toFixed(2) > 0.80) {
-                      if (status == "stand" || status == "bent") {
-                          var audio = new Audio(".audios/bent.mp3");
+                  } else if (prediction[3].probability.toFixed(2) == 1.00) {
+                      if (status == "stand") {
+                          var audio = new Audio("./audios/bent.mp3");
                           audio.play();
                       }
                       status = "bent"
