@@ -55,8 +55,7 @@
 
           </header>
             
-            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="initvoice
-            ()">START</button></div>
+            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="init()">START</button></div>
 
             <div id ="ai">
                 <canvas id="canvas"></canvas>
@@ -84,6 +83,8 @@
 
 
             <canvas id="canvas2"></canvas>
+            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="initvoice()">START</button></div>
+
             <div id="label-container2"></div>
 
 
@@ -283,9 +284,9 @@
 async function initvoice() {
     const recognizer = await createModel();
     const classLabels = recognizer.wordLabels(); // get class labels
-    const labelContainer2 = document.getElementById("label-container2");
+    const labelContainer = document.getElementById("label-container");
     for (let i = 0; i < classLabels.length; i++) {
-        labelContainer2.appendChild(document.createElement("div"));
+        labelContainer.appendChild(document.createElement("div"));
     }
 
     // listen() takes two arguments:
@@ -296,7 +297,7 @@ async function initvoice() {
         // render the probability scores per class
         for (let i = 0; i < classLabels.length; i++) {
             const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-            labelContainer2.childNodes[i].innerHTML = classPrediction;
+            labelContainer.childNodes[i].innerHTML = classPrediction;
         }
     }, {
         includeSpectrogram: true, // in case listen should return result.spectrogram
