@@ -213,7 +213,12 @@
                                     startnar();
                                     status = "go"
                                 }
+                                else if (result.scores[3].toFixed(2) == 1.0) {
+                                    if(status=="go"){
+                                        golink()
+                                    }
 
+                                }
 
                             }
 
