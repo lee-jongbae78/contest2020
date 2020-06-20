@@ -208,51 +208,47 @@
                         return recognizer;
                     }
 
-                    async function init() {
-                        const recognizer = await createModel();
-        const classLabels = recognizer.wordLabels(); // get class labels
-        const labelContainer2 = document.getElementById("label-container2");
-        for (let i = 0; i < classLabels.length; i++) {
-            labelContainer2.appendChild(document.createElement("div"));
-        }
-                    
+                        async function init() {
+                    const recognizer = await createModel();
+                    const classLabels = recognizer.wordLabels(); // get class labels
+                    const labelContainer2 = document.getElementById("label-container2");
+                    for (let i = 0; i < classLabels.length; i++) {
+                        labelContainer2.appendChild(document.createElement("div"));
+                    }
+                        
+
+                    recognizer.listen(result => {
+
+                        const scores = result.scores; // probability of prediction for each class
+                        // render the probability scores per class
+                        for (let i = 0; i < classLabels.length; i++) {
+                            const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+                            labelContainer2.childNodes[i].innerHTML = classPrediction;
 
 
-        // listen() takes two arguments:
-        // 1. A callback function that is invoked anytime a word is recognized.
-        // 2. A configuration object with adjustable fields
-                        recognizer.listen(result => {
-
-                            const scores = result.scores; // probability of prediction for each class
-                            // render the probability scores per class
-                            for (let i = 0; i < classLabels.length; i++) {
-                                const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-                                labelContainer2.childNodes[i].innerHTML = classPrediction;
-
-
-                                if (result.scores[2].toFixed(2) >= 0.9) {
-                                    if(status=="go"){
-                                        init2()
-                                        status = "giveup"
-                                    }
+                            if (result.scores[2].toFixed(2) >= 0.9) {
+                                if(status=="go"){
+                                    init2()
+                                    status = "giveup"
                                 }
-                                
-                                else if (result.scores[3].toFixed(2) >= 0.9) {
-                                    startnar();
-                                    status = "go"
+                            }
+                            
+                            else if (result.scores[3].toFixed(2) >= 0.9) {
+                                startnar();
+                                status = "go"
+                            }
+                            
+                            else if (result.scores[1].toFixed(2) > 0.9) {
+                                if(status=="giveup"){
+                                    gomenu2()
                                 }
-                                
-                                else if (result.scores[1].toFixed(2) > 0.9) {
-                                    if(status=="giveup"){
-                                        gomenu2()
-                                    }
-                                    status = "ready"
-
-                                }
+                                status = "ready"
 
                             }
 
-                        }, {
+                        }
+
+                    }, {
                 
                 includeSpectrogram: true, // in case listen should return result.spectrogram
                 probabilityThreshold: 0.75,
@@ -260,7 +256,6 @@
                 overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
             });
                     }
-
 
 
               async function init2() {
@@ -299,8 +294,6 @@
 
         // Stop the recognition in 5 seconds.
         // setTimeout(() => recognizer.stopListening(), 5000);
-    
-
      
               async function loop(timestamp) {
                   webcam.update(); // update the webcam frame
@@ -313,10 +306,7 @@
 
 
               async function predict() {
-   
 
-                  // Prediction #1: run input through posenet
-                  // estimatePose can take in an image, video or canvas html element
                   const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
                   // Prediction 2: run input through teachable machine classification model
                   const prediction = await model.predict(posenetOutput);
@@ -376,8 +366,10 @@
               }
 
 
+        </script>
 
-</script>
+
 
     </body>
+
 </html>
