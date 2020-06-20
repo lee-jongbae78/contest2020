@@ -81,6 +81,7 @@
 
             <div id="label-container"></div>
 
+            <div id="label-container2"></div>
 
             <script>
                 function myFunction() {
@@ -157,6 +158,24 @@
 
               let model, webcam, ctx, labelContainer, maxPredictions;
       
+                        async function createModel() {
+                        const checkpointURL = "https://lee-jongbae78.github.io/contest2020/my_model_211/model.json"; // model topology
+                        const metadataURL = "https://lee-jongbae78.github.io/contest2020/my_model_211/metadata.json"; // model metadata
+
+                        const recognizer = speechCommands.create(
+                            "BROWSER_FFT", // fourier transform type, not useful to change
+                            undefined, // speech commands vocabulary feature, not useful for your models
+                            checkpointURL,
+                            metadataURL);
+
+                        // check that model and metadata are loaded via HTTPS requests.
+                        await recognizer.ensureModelLoaded();
+
+                        return recognizer;
+                    }
+
+
+
               async function init() {
                   const modelURL = URL + "model.json";
                   const metadataURL = URL + "metadata.json";
@@ -185,7 +204,51 @@
 
                   //운동 시작하는 음성
 
-                  startnar();
+                  //startnar();
+
+
+
+                  const recognizer = await createModel();
+        const classLabels = recognizer.wordLabels(); // get class labels
+        const labelContainer2 = document.getElementById("label-container2");
+        for (let i = 0; i < classLabels.length; i++) {
+            labelContainer2.appendChild(document.createElement("div"));
+        }
+
+
+        // listen() takes two arguments:
+        // 1. A callback function that is invoked anytime a word is recognized.
+        // 2. A configuration object with adjustable fields
+        recognizer.listen(result => {
+            const scores = result.scores; // probability of prediction for each class
+            // render the probability scores per class
+            for (let i = 0; i < classLabels.length; i++) {
+                const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+                labelContainer2.childNodes[i].innerHTML = classPrediction;
+
+                if (result.scores[1].toFixed(2) > 0.8) {
+                   golink();
+                }
+                if (result.scores[2].toFixed(2) >= 0.9) {
+                    startnar();
+
+                }
+
+            }
+
+
+
+            }, {
+                
+            includeSpectrogram: true, // in case listen should return result.spectrogram
+            probabilityThreshold: 0.75,
+            invokeCallbackOnNoiseAndUnknown: true,
+            overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
+        });
+
+        // Stop the recognition in 5 seconds.
+        // setTimeout(() => recognizer.stopListening(), 5000);
+    
 
               }
       
