@@ -56,12 +56,11 @@
           <div class="aititle">
           <span class = "aititleh">AI 대화 방법</span>
           </div>
-          <span class = "aititleh2"> 1. <button class="btn btn-danger btn-lg" type="button" onclick="init()">시작하기</button>&nbsp&nbsp버튼 누르기</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class = "aititleh2">2. "안녕"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">3. 준비가 다 되었으면 "시작"이라고 말해보세요</span>
-         
+          <div class ="aititle0">
+          <span class = "aititleh2"> 1. <button class="btn btn-danger btn-lg" type="button" onclick="init()">시작하기</button>&nbsp&nbsp버튼 누르기</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class = "aititleh2">2. "안녕"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">3. 준비가 다 되었으면 "시작"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">4. 힘들면 "그만"이라고 말해보세요</span>
+          </div>
 
             <div id ="ai">
-                <div class="introduce">
-                    </div>
 
                 <canvas id="canvas"><div></div></canvas>
                 <div id="frame">
@@ -104,9 +103,32 @@
             }
             </script>
 
+            
             <div id ="modal01">
-                <img src="./images/icon1.jpg" class="mr-3 imgpop" alt="...">
-                <a onclick ="pop1()" class="close">close</a>
+                <h1>운동 결과</h1>
+                <p class ="modalf">수고하셨어요 다음 운동을 선택하세요!!</p>
+
+                <img src="./images/icon1.jpg" class="mr-3 imgpop" alt="..."></img>
+
+                    <div class="progress">
+                        <div class="progress-bar bg-success " role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">근지구력 &nbsp25%</div>
+                    </div>
+                
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">심폐지구력 &nbsp15%</div>
+                    </div>
+                    
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">유연성 &nbsp35%</div>
+                    </div>
+                
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">신체 구성  &nbsp50%</div>
+                    </div>
+
+                    <p><img src="./images/happy.jpg" class="mx-3 imgpop" alt="..."></p>
+
+                <a class ="modalbuttom" onclick ="pop1()" class="close">close</a>
             </div>
 
             <script type="text/javascript">
@@ -119,6 +141,7 @@
                   else {
                     document.getElementById("modal01").style.display = "none";
                     c = 0;
+                    gomenu2()
                   }
                 }
               </script>
@@ -132,8 +155,14 @@
         </script>
 
         <script>
-            function golink(){
+            function gohome(){
                 location.href="./index.html"
+            }
+        </script>
+
+        <script>
+            function gomenu2(){
+                location.href="./menu2.html"
             }
         </script>
 
@@ -193,6 +222,7 @@
         // 1. A callback function that is invoked anytime a word is recognized.
         // 2. A configuration object with adjustable fields
                         recognizer.listen(result => {
+
                             const scores = result.scores; // probability of prediction for each class
                             // render the probability scores per class
                             for (let i = 0; i < classLabels.length; i++) {
@@ -200,23 +230,23 @@
                                 labelContainer2.childNodes[i].innerHTML = classPrediction;
 
 
-                                if (result.scores[1].toFixed(2) > 0.8) {
+                                if (result.scores[2].toFixed(2) >= 0.9) {
                                     if(status=="go"){
                                         init2()
-
+                                        status = "giveup"
                                     }
-                                    status = "ready"
-
                                 }
                                 
-                                else if (result.scores[2].toFixed(2) >= 0.9) {
+                                else if (result.scores[3].toFixed(2) >= 0.9) {
                                     startnar();
                                     status = "go"
                                 }
-                                else if (result.scores[3].toFixed(2) == 1.0) {
-                                    if(status=="go"){
-                                        golink()
+                                
+                                else if (result.scores[1].toFixed(2) > 0.9) {
+                                    if(status=="giveup"){
+                                        gomenu2()
                                     }
+                                    status = "ready"
 
                                 }
 
@@ -261,7 +291,7 @@
                       labelContainer.appendChild(document.createElement("div"));
                   }
 
-                  //운동 시작하는 음성
+                  //운동 시작하는 음성 바로 나오기
 
                   //startnar();
 

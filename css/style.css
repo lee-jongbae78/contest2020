@@ -2,10 +2,10 @@
 
 html, body{   margin-top: 80px; font-size:16px; }
 h1{ font-family: 'Cute Font', cursive; font-size: 3.0em; text-align:center; transition: 0.35s;}
-h2{ font-family: 'Nanum Gothic', sans-serif; font-size: 2.5em; color:gray; text-align:center; transition: 0.35s;}
-h3{ font-family: 'Nanum Gothic', sans-serif; font-size: 2.0em; color:white; text-align:center;  transition: 0.35s;}
-h4{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color:black; text-align:left;  transition: 0.35s; }
-h5{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.4em; color:black; text-align:left;  transition: 0.35s;}
+h2{ font-family: 'Do Hyeon', sans-serif; font-size: 2.5em; color:gray; text-align:center; transition: 0.35s;}
+h3{ font-family: 'Do Hyeon', sans-serif; font-size: 2.0em; color:white; text-align:center;  transition: 0.35s;}
+h4{ font-family: 'Do Hyeon', sans-serif; font-size: 1.6em; color:black; text-align:left;  transition: 0.35s; }
+h5{ font-family: 'Do Hyeon', sans-serif; font-size: 1.4em; color:black; text-align:left;  transition: 0.35s;}
 a{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; }
 img{ vertical-align:top; }
 
@@ -17,19 +17,21 @@ img{ vertical-align:top; }
 .titletext { font-size: 1.0em;     margin-top: 18px;}
 .subtitle { text-align:center;  margin-top: 10px;}
 .aititle { text-align:center;  margin-top: -70px;}
+.aititle0 {text-align:center; }
 .aititleh { font-family: 'Do Hyeon', sans-serif;color: red; font-size: 2.6em;  text-align:center;  }
 .aititleh2 { font-family: 'Do Hyeon', sans-serif;color: red; font-size: 1.6em;  text-align:center;  }
 
-.classmenu { font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color: #f0a500; text-align:left;  transition: 0.35s;}
+.classmenu { font-family: 'Do Hyeon', sans-serif; font-size: 1.6em; color: #f0a500; text-align:left;  transition: 0.35s;}
 .card h-100{ position: relative; margin:0 auto;}
 
 .modalbutton{ background: gray;  padding: 10px 30px; cursor: pointer; }
 .modalbutton p { text-align: right;}
 
-#modal01{ width: 400px; height: 600px; overflow: hidden; background: #f1f1f1; box-shadow: 0 0 20px black; border-radius: 8px; position: absolute; top: 56%; left:50%; transform: translate(-50%, -50%); z-index:99; padding:10px; text-align: center; display: none;}
-
-
-
+#modal01{ width: 400px; height: 600px; overflow: hidden; background: #f1f1f1; box-shadow: 0 0 20px black; border-radius: 8px; position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%); z-index:99; padding:10px; text-align: center; display: none;}
+.modalf{ font-family: 'Do Hyeon', sans-serif; font-size: 1.3em; color:black; text-align:center;  transition: 0.35s; }
+.mr-3 {margin: 10px; width: 100px; height: 100px !important; }
+.mx-3 { margin-top: 20px; width: 200px; height: 160px !important; }
+.modalbuttom { text-align:right;}
  .sub-menu{ margin-top: 0px; text-align: right; margin-right: 11%;}
 
  #video1{ width: 100%; }
