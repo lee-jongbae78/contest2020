@@ -16,6 +16,10 @@ img{ vertical-align:top; }
 
 .titletext { font-size: 1.0em;     margin-top: 18px;}
 .subtitle { text-align:center;  margin-top: 10px;}
+.aititle { text-align:center;  margin-top: -70px;}
+.aititleh { font-family: 'Do Hyeon', sans-serif;color: red; font-size: 2.6em;  text-align:center;  }
+.aititleh2 { font-family: 'Do Hyeon', sans-serif;color: red; font-size: 1.6em;  text-align:center;  }
+
 .classmenu { font-family: 'Nanum Gothic', sans-serif; font-size: 1.6em; color: #f0a500; text-align:left;  transition: 0.35s;}
 .card h-100{ position: relative; margin:0 auto;}
 
@@ -26,7 +30,7 @@ img{ vertical-align:top; }
 
 
 
- .sub-menu{ margin-top:-60px; text-align: right; margin-right: 11%;}
+ .sub-menu{ margin-top: 0px; text-align: right; margin-right: 11%;}
 
  #video1{ width: 100%; }
 

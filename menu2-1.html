@@ -50,15 +50,20 @@
                     });
                 });
             </script>
-
-            
-
+    
           </header>
-            
-            <div class="sub-menu"><button class="btn2 btn-primary" type="button" onclick="init()">START</button></div>
+
+          <div class="aititle">
+          <span class = "aititleh">AI 대화 방법</span>
+          </div>
+          <span class = "aititleh2"> 1. <button class="btn btn-danger btn-lg" type="button" onclick="init()">시작하기</button>&nbsp&nbsp버튼 누르기</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class = "aititleh2">2. "안녕"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">3. 준비가 다 되었으면 "시작"이라고 말해보세요</span>
+         
 
             <div id ="ai">
-                <canvas id="canvas"></canvas>
+                <div class="introduce">
+                    </div>
+
+                <canvas id="canvas"><div></div></canvas>
                 <div id="frame">
                     <div class="center">
                         <div class="headline">
@@ -121,7 +126,7 @@
 
         <script>                             
             function startnar(){
-                var audio = new Audio("./audios/start.mp3");
+                var audio = new Audio("./audios/greeting.mp3");
                 audio.play();
             }
         </script>
@@ -146,8 +151,8 @@
 
               <!--티쳐블머신 관련-->
               <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-              <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
               <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
 
           <script type="text/javascript">
               // More API functions here:
@@ -174,9 +179,57 @@
                         return recognizer;
                     }
 
+                    async function init() {
+                        const recognizer = await createModel();
+        const classLabels = recognizer.wordLabels(); // get class labels
+        const labelContainer2 = document.getElementById("label-container2");
+        for (let i = 0; i < classLabels.length; i++) {
+            labelContainer2.appendChild(document.createElement("div"));
+        }
+                    
 
 
-              async function init() {
+        // listen() takes two arguments:
+        // 1. A callback function that is invoked anytime a word is recognized.
+        // 2. A configuration object with adjustable fields
+                        recognizer.listen(result => {
+                            const scores = result.scores; // probability of prediction for each class
+                            // render the probability scores per class
+                            for (let i = 0; i < classLabels.length; i++) {
+                                const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
+                                labelContainer2.childNodes[i].innerHTML = classPrediction;
+
+
+                                if (result.scores[1].toFixed(2) > 0.8) {
+                                    if(status=="go"){
+                                        init2()
+
+                                    }
+                                    status = "ready"
+
+                                }
+                                
+                                else if (result.scores[2].toFixed(2) >= 0.9) {
+                                    startnar();
+                                    status = "go"
+                                }
+
+
+                            }
+
+                        }, {
+                
+                includeSpectrogram: true, // in case listen should return result.spectrogram
+                probabilityThreshold: 0.75,
+                invokeCallbackOnNoiseAndUnknown: true,
+                overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
+            });
+                    }
+
+
+
+              async function init2() {
+
                   const modelURL = URL + "model.json";
                   const metadataURL = URL + "metadata.json";
                   // load the model and metadata
@@ -184,7 +237,8 @@
                   // Note: the pose library adds a tmPose object to your window (window.tmPose)
                   model = await tmPose.load(modelURL, metadataURL);
                   maxPredictions = model.getTotalClasses();
-      
+                  var audio = new Audio("./audios/start.mp3");
+                    audio.play();
                   // Convenience function to setup a webcam
                   const size = 300;
                   const flip = true; // whether to flip the webcam
@@ -206,52 +260,13 @@
 
                   //startnar();
 
-
-
-                  const recognizer = await createModel();
-        const classLabels = recognizer.wordLabels(); // get class labels
-        const labelContainer2 = document.getElementById("label-container2");
-        for (let i = 0; i < classLabels.length; i++) {
-            labelContainer2.appendChild(document.createElement("div"));
-        }
-
-
-        // listen() takes two arguments:
-        // 1. A callback function that is invoked anytime a word is recognized.
-        // 2. A configuration object with adjustable fields
-        recognizer.listen(result => {
-            const scores = result.scores; // probability of prediction for each class
-            // render the probability scores per class
-            for (let i = 0; i < classLabels.length; i++) {
-                const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-                labelContainer2.childNodes[i].innerHTML = classPrediction;
-
-                if (result.scores[1].toFixed(2) > 0.8) {
-                   golink();
-                }
-                if (result.scores[2].toFixed(2) >= 0.9) {
-                    startnar();
-
-                }
-
-            }
-
-
-
-            }, {
-                
-            includeSpectrogram: true, // in case listen should return result.spectrogram
-            probabilityThreshold: 0.75,
-            invokeCallbackOnNoiseAndUnknown: true,
-            overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
-        });
+              }
 
         // Stop the recognition in 5 seconds.
         // setTimeout(() => recognizer.stopListening(), 5000);
     
 
-              }
-      
+     
               async function loop(timestamp) {
                   webcam.update(); // update the webcam frame
                   await predict();
@@ -329,9 +344,5 @@
 
 </script>
 
-
-
-
-    </div>
-      </body>
-    </html>
+    </body>
+</html>
