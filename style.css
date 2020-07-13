@@ -11,6 +11,9 @@ a{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; }
 img{ vertical-align:top; }
 
 .clicked {color:red; text-align: center;}
+.form, .greeting { display: none;}
+.showing { display: block;}
+#divClock{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; text-align:center;  transition: 0.35s;}
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,400,300);
  .frame {

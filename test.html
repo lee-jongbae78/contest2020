@@ -13,19 +13,26 @@
   </head>
 
 
-  <body>
+  <body onload="showClock()">
 
 
     <div class="js-clock">
       <h1> </h1>
      </div>
-     <form class="js-form">
-      <input type="text" placeholder="이름을 입력하세요">
+     <form class="js-form form">
+      <input type="text" placeholder="이름을 입력하세요" />
 
      </form>
 
+     <h4 class="js-greetings greetings"></h4>
+
+     <div class="connectclock">
+       <h1 id="divClock" class="clock"></h1>
+     </div>
+
     <script src="clock.js"></script>
-    <script src="greeting.jsS"></script>
+    <script src="greeting.js"></script>
+    <script src="connectclock.js"></script>
 
 
   </body>
