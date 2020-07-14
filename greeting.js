@@ -10,7 +10,9 @@ function saveName(text){
 }
 
 function handleSubmit(event){
-    event.preventDefault();
+    console.log("이름입력묻기");
+
+    event.preventDefault(); //초기화 방지
     const currentValue = input.value;
     paintGreeting(currentValue);
     saveName(currentValue);
@@ -19,12 +21,13 @@ function handleSubmit(event){
 function askForName(){
     form.classList.add(SHOWING_CN);
     form.addEventListener("submit", handleSubmit);
+
 }
 
 function paintGreeting(text){
     form.classList.remove(SHOWING_CN);
     greeting.classList.add(SHOWING_CN);
-    greeting.innerText = `안녕하세요 ${text}`;
+    greeting.innerText = `안녕하세요 ${text} 님` ;
 }
 
 function loadName(){
