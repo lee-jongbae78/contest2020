@@ -10,6 +10,12 @@ h5{ font-family: 'Nanum Gothic', sans-serif; font-size: 1.4em; color:black; text
 a{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; }
 img{ vertical-align:top; }
 
+.foottitle{ font-family: 'Do Hyeon', sans-serif; font-size: 1.6em; text-align:center;  transition: 0.35s;}
+
+.clicked {color:red; text-align: center;}
+.form, .greetings { display: none;}
+.showing { display: block;}
+#divClock{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; text-align:center;  transition: 0.35s; }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,400,300);
  .frame {
