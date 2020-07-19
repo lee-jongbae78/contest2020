@@ -15,7 +15,7 @@ img{ vertical-align:top; }
 .form, .greetings { display: none;}
 .showing { display: block;}
 #divClock{ font-family: 'Do Hyeon', sans-serif; font-size: 1.2em; text-align:center;  transition: 0.35s; }
-.js-form, .js-greetings {text-align:center; }
+.js-form, .js-greetings, .point {text-align:center; }
 
 .menu2top{ margin-top:50px;}
 
@@ -47,7 +47,7 @@ img{ vertical-align:top; }
 
  #video1{ width: 100%; }
 
- #video2{ width: 60%; }
+ #video2{ width: 40%; height: 600px; position: fixed; }
 
  header{ position: absolute; top: 0; left: 0; padding: 0 30px; background: #262626; width: 100%; box-sizing: border-box; }
  header a{ color: white; }
