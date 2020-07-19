@@ -47,7 +47,7 @@ img{ vertical-align:top; }
 
  #video1{ width: 100%; }
 
- #video2{ width: 40%; height: 600px; position: fixed; }
+ #video2{ width: 300px; height: 300px; position: fixed; right:50%; bottom:7px; margin-right:-150px;}
 
  header{ position: absolute; top: 0; left: 0; padding: 0 30px; background: #262626; width: 100%; box-sizing: border-box; }
  header a{ color: white; }
