@@ -27,10 +27,6 @@ function getpoint(){
     if(strangth1 === null || strangth2 === null || strangth3 === null || strangth4 === null ) {
         askForPoint();
     } else {
-        const strangth1 = localStorage.strangth1 ++  ;
-        const strangth2 = localStorage.strangth2 ++  ;
-        const strangth3 = localStorage.strangth3 ++  ;
-        const strangth4 = localStorage.strangth4 ++  ;
 
         paintpoint(localStorage.getItem("strangth1"),localStorage.getItem("strangth2"),localStorage.getItem("strangth3"),localStorage.getItem("strangth4") );
     }
