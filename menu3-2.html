@@ -159,12 +159,12 @@
 
         <script>
             function gomenu2(){
-                location.href="./menu2.html"
+                location.href="./menu3.html"
             }
         </script>
 
         <script src="point.js"></script>
-        <script src="getpoint1.js"></script>
+        <script src="getpoint3.js"></script>
 
 
           <!-- Optional JavaScript -->
@@ -189,7 +189,7 @@
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
       
               // 
-              const URL = "https://lee-jongbae78.github.io/contest2020/my_model_21/";
+              const URL = "https://lee-jongbae78.github.io/contest2020/my_model_32/";
 
               let model, webcam, ctx, labelContainer, maxPredictions;
       
@@ -337,12 +337,6 @@
                           }
                       }
                       status = "squat"
-                  }  else if (prediction[2].probability.toFixed(2) == 1.00) {
-                      if (status == "bent" || status == "stand") {
-                          var audio = new Audio("./audios/bent.mp3");
-                          audio.play();
-                      }
-                      status = "bent"
                   }
                   for (let i = 0; i < maxPredictions; i++) {
                       const classPrediction =
