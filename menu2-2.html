@@ -337,13 +337,7 @@
                           }
                       }
                       status = "squat"
-                  }  else if (prediction[2].probability.toFixed(2) == 1.00) {
-                      if (status == "bent" || status == "stand") {
-                          var audio = new Audio("./audios/bent.mp3");
-                          audio.play();
-                      }
-                      status = "bent"
-                  }
+                  }  
                   for (let i = 0; i < maxPredictions; i++) {
                       const classPrediction =
                           prediction[i].className + ": " + prediction[i].probability.toFixed(2);
