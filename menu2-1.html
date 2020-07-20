@@ -221,27 +221,29 @@
                     recognizer.listen(result => {
 
                         const scores = result.scores; // probability of prediction for each class
+                        
+
                         // render the probability scores per class
                         for (let i = 0; i < classLabels.length; i++) {
                             const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
                             labelContainer2.childNodes[i].innerHTML = classPrediction;
 
-
-                            if (result.scores[2].toFixed(2) >= 0.8) {
+                             if (result.scores[2].toFixed(2) >= 0.8) {//준비에서 시작 음성
                                 if(status=="go"){
                                     init2()
                                     status = "giveup"
                                 }
                             }
                             
-                            else if (result.scores[3].toFixed(2) >= 0.7) {
+                            else if (result.scores[3].toFixed(2) >= 0.7) { //준비 안녕 음성
                                 startnar();
                                 status = "go"
+
                             }
                             
                             else if (result.scores[1].toFixed(2) > 0.8) {
                                 if(status=="giveup"){
-                                    gomenu2();
+                                    gomenu2()
                                 }
                                 status = "ready"
 
