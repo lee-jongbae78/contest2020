@@ -105,6 +105,8 @@
 
             <script>
                 function myFunction() {
+                var bentings = document.getElementById("bentings"); 
+                bentings.pause();
                 var audio = new Audio("./audios/8.mp3");
                 audio.play();
                 setTimeout(nextMenu1, 300) ;
@@ -248,7 +250,7 @@
 
                             }
                             
-                            else if (result.scores[1].toFixed(2) > 0.9) {
+                            else if (result.scores[1].toFixed(2) == 1.0) {
                                 if(status1=="giveup" || status1=="go"){
                                     gomenu2()
                                 }
@@ -293,7 +295,6 @@
 
                     const hidevideo = document.getElementById("video2-1");
 
-                    console.log(hidevideo);
                   hidevideo.style.display = 'none';
                                            
                   const canvas = document.getElementById("canvas");
@@ -311,8 +312,6 @@
 
               }
 
-        // Stop the recognition in 5 seconds.
-        // setTimeout(() => recognizer.stopListening(), 5000);
      
               async function loop(timestamp) {
                   webcam.update(); // update the webcam frame
@@ -337,7 +336,7 @@
 
                     status = "stand"
 
-                  } else if (prediction[1].probability.toFixed(2) > 0.80) {
+                  } else if (prediction[1].probability.toFixed(2) > 0.90) {
                       if (status == "stand") {
                           count++
                           var audio = new Audio('./audios/' + count % 10 + '.mp3');
@@ -354,7 +353,7 @@
                           }
                       }
                       status = "squat"
-                  } else if (prediction[2].probability.toFixed(2) > 0.80) {
+                  } else if (prediction[2].probability.toFixed(2) == 1.0) {
                       if (status == "bent" || status == "stand") {
                           bentings.play();
                       }
