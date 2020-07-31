@@ -358,15 +358,9 @@
                           }
                       }
                       status = "squat"
-                  } else if (prediction[2].probability.toFixed(2) == 1.0) {
-                      if (status == "bent" || status == "stand") {
-                          bentings.play();
-                      }
-                      status = "bent"
                   }
 
-
-
+                  
                   for (let i = 0; i < maxPredictions; i++) {
                       const classPrediction =
                           prediction[i].className + ": " + prediction[i].probability.toFixed(2);
