@@ -20,12 +20,12 @@
 
       </head>
 
-      <body>
+      <body class="sports">
             <header>
             <logo>
                    <ul>
                      <li><a href="index.html"><i class="fa fa-spinner fa-spin fa-fw"></i></a></li>
-                     <li><h2 class="titletext">티볼 - 치기</h2></li>
+                     <li><h2 class="titletext">티볼 - 던지기</h2></li>
                     </ul>
            </logo>
   
@@ -61,22 +61,24 @@
           </div>
 
             <div id ="ai">
-                <video id="video2" controls autoplay muted>
-                    <source src="videos/3-2.mp4" type="video/mp4"/>
-                  </video>
+
 
                 <canvas id="canvas">
                     <div>
 
                     </div>
                 </canvas>
-
+                
+                    <video id="video3-1" controls autoplay muted>
+                        <source src="videos/3-2.mp4" type="video/mp4"/>
+                    </video>
 
 
                 <div id="frame">
+
                     <div class="center">
                         <div class="headline">
-                            <div class="small">배트</div>치기
+                            <div class="small">공</div>던지기
                         </div>
                         <div class="circle-big">
                             <div class="text">
@@ -89,9 +91,19 @@
                             </svg>
                         </div>
                     </div>
+
                 </div>
+
+
             </div>
 
+
+
+            <audio id="greetings"><source src= "./audios/greeting.mp3" type="audio/mpeg"></audio> 
+            <audio id="startings"><source src= "./audios/start.mp3" type="audio/mpeg"></audio> 
+            <audio id="bentings"><source src= "./audios/bentlong.mp3" type="audio/mpeg"></audio> 
+
+                
 
             <div id="label-container"></div>
 
@@ -99,11 +111,13 @@
 
             <script>
                 function myFunction() {
+                var bentings = document.getElementById("bentings"); 
+                bentings.pause();
                 var audio = new Audio("./audios/8.mp3");
                 audio.play();
                 setTimeout(nextMenu1, 300) ;
                 }
-                </script>
+            </script>
 
            <script>
                 function nextMenu1() {
@@ -141,15 +155,8 @@
                     gomenu2()
                   }
                 }
-              </script>
+            </script>
 
-
-        <script>                             
-            function startnar(){
-                var audio = new Audio("./audios/greeting.mp3");
-                audio.play();
-            }
-        </script>
 
         <script>
             function gohome(){
@@ -189,7 +196,8 @@
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
       
               // 
-              const URL = "https://lee-jongbae78.github.io/contest2020/my_model_32/";
+              const URL32 = "https://lee-jongbae78.github.io/contest2020/my_model_32/";
+
 
               let model, webcam, ctx, labelContainer, maxPredictions;
       
@@ -209,7 +217,12 @@
                         return recognizer;
                     }
 
-                        async function init() {
+                    async function init() {
+                        var status1
+                        status1 = "ready";
+
+                    var greetings = document.getElementById("greetings"); 
+  
                     const recognizer = await createModel();
                     const classLabels = recognizer.wordLabels(); // get class labels
                     const labelContainer2 = document.getElementById("label-container2");
@@ -228,27 +241,28 @@
                             const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
                             labelContainer2.childNodes[i].innerHTML = classPrediction;
 
-                             if (result.scores[2].toFixed(2) >= 0.8) {//준비에서 시작 음성
-                                if(status=="go"){
+                             if (result.scores[2].toFixed(2) >= 0.6) {//준비에서 시작 음성
+                                if(status1=="go"){
                                     init2()
-                                    status = "giveup"
+                                    status1 = "giveup"
                                 }
                             }
                             
-                            else if (result.scores[3].toFixed(2) >= 0.7) { //준비 안녕 음성
-                                startnar();
-                                status = "go"
+                            else if (result.scores[3].toFixed(2) >= 0.8) { //준비 안녕 음성
+                                console.log(greetings);
+                                greetings.play();
+                                status1 = "go"
 
                             }
                             
-                            else if (result.scores[1].toFixed(2) > 0.8) {
-                                if(status=="giveup"){
+                            else if (result.scores[1].toFixed(2) == 1.0) {
+                                if(status1=="giveup" || status1=="go"){
                                     gomenu2()
                                 }
-                                status = "ready"
+                                status1 = "ready"
 
                             }
-
+                            //console.log(status1);
                         }
 
                     }, {
@@ -262,16 +276,18 @@
 
 
               async function init2() {
-
-                  const modelURL = URL + "model.json";
-                  const metadataURL = URL + "metadata.json";
+                  
+                  var startings = document.getElementById("startings"); 
+                  startings.play();
+                                    
+                  const modelURL = URL32 + "model.json";
+                  const metadataURL = URL32 + "metadata.json";
                   // load the model and metadata
                   // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
                   // Note: the pose library adds a tmPose object to your window (window.tmPose)
                   model = await tmPose.load(modelURL, metadataURL);
                   maxPredictions = model.getTotalClasses();
-                  var audio = new Audio("./audios/start.mp3");
-                    audio.play();
+
                   // Convenience function to setup a webcam
                   const size = 300;
                   const flip = true; // whether to flip the webcam
@@ -281,7 +297,13 @@
                   window.requestAnimationFrame(loop);
       
                   // append/get elements to the DOM
+
+                    const hidevideo = document.getElementById("video3-1");
+
+                  hidevideo.style.display = 'none';
+                                           
                   const canvas = document.getElementById("canvas");
+                  canvas.style.display = 'inline-block';
                   canvas.width = size; canvas.height = size;
                   ctx = canvas.getContext("2d");
                   labelContainer = document.getElementById("label-container");
@@ -295,8 +317,6 @@
 
               }
 
-        // Stop the recognition in 5 seconds.
-        // setTimeout(() => recognizer.stopListening(), 5000);
      
               async function loop(timestamp) {
                   webcam.update(); // update the webcam frame
@@ -309,6 +329,7 @@
 
 
               async function predict() {
+                 var bentings = document.getElementById("bentings"); 
 
                   const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
                   // Prediction 2: run input through teachable machine classification model
@@ -320,7 +341,7 @@
 
                     status = "stand"
 
-                  } else if (prediction[1].probability.toFixed(2) > 0.80) {
+                  } else if (prediction[1].probability.toFixed(2) > 0.90) {
                       if (status == "stand") {
                           count++
                           var audio = new Audio('./audios/' + count % 10 + '.mp3');
@@ -337,7 +358,15 @@
                           }
                       }
                       status = "squat"
+                  } else if (prediction[2].probability.toFixed(2) == 1.0) {
+                      if (status == "bent" || status == "stand") {
+                          bentings.play();
+                      }
+                      status = "bent"
                   }
+
+
+
                   for (let i = 0; i < maxPredictions; i++) {
                       const classPrediction =
                           prediction[i].className + ": " + prediction[i].probability.toFixed(2);
