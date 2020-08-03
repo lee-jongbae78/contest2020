@@ -25,7 +25,7 @@
             <logo>
                    <ul>
                      <li><a href="index.html"><i class="fa fa-spinner fa-spin fa-fw"></i></a></li>
-                     <li><h2 class="titletext">티볼 - 던지기</h2></li>
+                     <li><h2 class="titletext">세 갈래근 늘려주기</h2></li>
                     </ul>
            </logo>
   
@@ -57,7 +57,7 @@
           <span class = "aititleh">AI 대화 방법</span>
           </div>
           <div class ="aititle0">
-          <span class = "aititleh2"> 1. <button class="btn btn-danger btn-lg" type="button" onclick="init()">시작하기</button>&nbsp&nbsp버튼 누르기</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class = "aititleh2">2. "안녕"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">3. 준비가 다 되었으면 "시작"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">4. 힘들면 "그만"이라고 말해보세요</span>
+          <span class = "aititleh2"> 1. <button class="btn btn-danger btn-lg" type="button" onclick="init()">시작하기</button>&nbsp&nbsp버튼 누르기</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class = "aititleh2">2. "안녕"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">3. 준비가 다 되었으면 "시작"이라고 말해보세요</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span class = "aititleh2">4. 힘들면 "그만"이라고 말해보세요<button class="btn btn-danger btn-lg" type="button" onclick="init3()">go</span>
           </div>
 
             <div id ="ai">
@@ -69,8 +69,8 @@
                     </div>
                 </canvas>
                 
-                    <video id="video3-2" controls autoplay muted>
-                        <source src="videos/3-2.mp4" type="video/mp4"/>
+                    <video id="video4-2" controls autoplay muted>
+                        <source src="videos/세 갈래근 늘려주기.mp4" type="video/mp4"/>
                     </video>
 
 
@@ -78,7 +78,7 @@
 
                     <div class="center">
                         <div class="headline">
-                            <div class="small">공</div>던지기
+                            <div class="small">세 갈래근</div>늘려주기
                         </div>
                         <div class="circle-big">
                             <div class="text">
@@ -159,6 +159,13 @@
 
 
         <script>
+            function init3() {
+                location.href="./menu4-2-1.html"
+            }
+            </script>
+
+
+        <script>
             function gohome(){
                 location.href="./index.html"
             }
@@ -196,7 +203,7 @@
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
       
               // 
-              const URL32 = "https://lee-jongbae78.github.io/contest2020/my_model_32/";
+              const URL42 = "https://lee-jongbae78.github.io/contest2020/my_model_42/";
 
 
               let model, webcam, ctx, labelContainer, maxPredictions;
@@ -280,8 +287,8 @@
                   var startings = document.getElementById("startings"); 
                   startings.play();
                                     
-                  const modelURL = URL32 + "model.json";
-                  const metadataURL = URL32 + "metadata.json";
+                  const modelURL = URL42 + "model.json";
+                  const metadataURL = URL42 + "metadata.json";
                   // load the model and metadata
                   // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
                   // Note: the pose library adds a tmPose object to your window (window.tmPose)
@@ -298,7 +305,7 @@
       
                   // append/get elements to the DOM
 
-                    const hidevideo = document.getElementById("video3-2");
+                    const hidevideo = document.getElementById("video4-2");
 
                   hidevideo.style.display = 'none';
                                            
@@ -336,13 +343,12 @@
                   const prediction = await model.predict(posenetOutput);
 
                               
-                  if (prediction[0].probability.toFixed(2) > 0.9) {
+                  if (prediction[0].probability.toFixed(2) == 1.00) {
 
 
                     status = "stand"
-                    console.log(status);
 
-                  } else if (prediction[1].probability.toFixed(2) > 0.95) {
+                  } else if (prediction[1].probability.toFixed(2) > 0.90) {
                       if (status == "stand") {
                           count++
                           var audio = new Audio('./audios/' + count % 10 + '.mp3');
@@ -359,7 +365,14 @@
                           }
                       }
                       status = "squat"
+                  } else if (prediction[2].probability.toFixed(2) == 1.0) {
+                      if (status == "bent" || status == "stand") {
+                          bentings.play();
+                      }
+                      status = "bent"
                   }
+
+
 
                   for (let i = 0; i < maxPredictions; i++) {
                       const classPrediction =
