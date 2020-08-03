@@ -157,13 +157,11 @@
                 }
             </script>
 
-
         <script>
-            function init3() {
-                location.href="./menu3-1-1.html"
-            }
-            </script>
-
+        function init3() {
+            location.href="./menu3-1-1.html"
+        }
+        </script>
 
         <script>
             function gohome(){
@@ -224,65 +222,9 @@
                         return recognizer;
                     }
 
-                    async function init() {
-                        var status1
-                        status1 = "ready";
+               
 
-                    var greetings = document.getElementById("greetings"); 
-  
-                    const recognizer = await createModel();
-                    const classLabels = recognizer.wordLabels(); // get class labels
-                    const labelContainer2 = document.getElementById("label-container2");
-                    for (let i = 0; i < classLabels.length; i++) {
-                        labelContainer2.appendChild(document.createElement("div"));
-                    }
-                        
-
-                    recognizer.listen(result => {
-
-                        const scores = result.scores; // probability of prediction for each class
-                        
-
-                        // render the probability scores per class
-                        for (let i = 0; i < classLabels.length; i++) {
-                            const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-                            labelContainer2.childNodes[i].innerHTML = classPrediction;
-
-                             if (result.scores[2].toFixed(2) >= 0.6) {//준비에서 시작 음성
-                                if(status1=="go"){
-                                    init2()
-                                    status1 = "giveup"
-                                }
-                            }
-                            
-                            else if (result.scores[3].toFixed(2) >= 0.8) { //준비 안녕 음성
-                                console.log(greetings);
-                                greetings.play();
-                                status1 = "go"
-
-                            }
-                            
-                            else if (result.scores[1].toFixed(2) == 1.0) {
-                                if(status1=="giveup" || status1=="go"){
-                                    gomenu2()
-                                }
-                                status1 = "ready"
-
-                            }
-                            //console.log(status1);
-                        }
-
-                    }, {
-                
-                includeSpectrogram: true, // in case listen should return result.spectrogram
-                probabilityThreshold: 0.75,
-                invokeCallbackOnNoiseAndUnknown: true,
-                overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
-            });
-                    }
-
-
-              async function init2() {
+              async function init3() {
                   
                   var startings = document.getElementById("startings"); 
                   startings.play();
@@ -398,7 +340,7 @@
 
 
         </script>
-
+init3();
 
 </body>
 
