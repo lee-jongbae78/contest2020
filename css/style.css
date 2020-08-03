@@ -84,7 +84,29 @@ h5{  text-align: center; color: #f0a500; font-weight: bold;}
 #canvas {width: 49%; display: none; margin:0 auto;}
 #counter { font-size: 70px;}
 #video2-1 { width: 49%; display: inline; vertical-align: top;}
+#video2-2 { width: 49%; display: inline; vertical-align: top;}
+#video2-3 { width: 49%; display: inline; vertical-align: top;}
+#video2-4 { width: 49%; display: inline; vertical-align: top;}
+
 #video3-1 { width: 49%; display: inline; vertical-align: top;}
+#video3-2 { width: 49%; display: inline; vertical-align: top;}
+#video3-3 { width: 49%; display: inline; vertical-align: top;}
+#video3-4 { width: 49%; display: inline; vertical-align: top;}
+#video3-5 { width: 49%; display: inline; vertical-align: top;}
+#video3-6 { width: 49%; display: inline; vertical-align: top;}
+#video3-7 { width: 49%; display: inline; vertical-align: top;}
+#video3-8 { width: 49%; display: inline; vertical-align: top;}
+#video3-9 { width: 49%; display: inline; vertical-align: top;}
+#video3-10 { width: 49%; display: inline; vertical-align: top;}
+#video3-11 { width: 49%; display: inline; vertical-align: top;}
+#video3-12 { width: 49%; display: inline; vertical-align: top;}
+#video3-13 { width: 49%; display: inline; vertical-align: top;}
+#video3-14 { width: 49%; display: inline; vertical-align: top;}
+#video3-15 { width: 49%; display: inline; vertical-align: top;}
+#video3-16 { width: 49%; display: inline; vertical-align: top;}
+#video3-17 { width: 49%; display: inline; vertical-align: top;}
+
+
 #video2{ width: 300px; height: 300px; position: fixed; right:50%; top:270px; margin-right:-150px;}
 #frame {width: 50%; height:780px; display: inline-block; vertical-align: top;
     background:#1c2e38;
