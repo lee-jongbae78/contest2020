@@ -25,7 +25,7 @@
             <logo>
                    <ul>
                      <li><a href="index.html"><i class="fa fa-spinner fa-spin fa-fw"></i></a></li>
-                     <li><h2 class="titletext">태권도 - 앞차기</h2></li>
+                     <li><h2 class="titletext">티볼 - 치기</h2></li>
                     </ul>
            </logo>
   
@@ -69,8 +69,8 @@
                     </div>
                 </canvas>
                 
-                    <video id="video3-12" controls autoplay muted>
-                        <source src="videos/3-12.mp4" type="video/mp4"/>
+                    <video id="video3-1" controls autoplay muted>
+                        <source src="videos/3-1.mp4" type="video/mp4"/>
                     </video>
 
 
@@ -78,7 +78,7 @@
 
                     <div class="center">
                         <div class="headline">
-                            <div class="small">앞</div>치기
+                            <div class="small">배트</div>치기
                         </div>
                         <div class="circle-big">
                             <div class="text">
@@ -160,7 +160,7 @@
 
         <script>
             function init3() {
-                location.href="./menu3-12-1.html"
+                location.href="./menu3-1-1.html"
             }
             </script>
 
@@ -203,7 +203,7 @@
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
       
               // 
-              const URL = "https://lee-jongbae78.github.io/contest2020/my_model_312/";
+              const URL31 = "https://lee-jongbae78.github.io/contest2020/my_model_31/";
 
 
               let model, webcam, ctx, labelContainer, maxPredictions;
@@ -287,8 +287,8 @@
                   var startings = document.getElementById("startings"); 
                   startings.play();
                                     
-                  const modelURL = URL + "model.json";
-                  const metadataURL = URL + "metadata.json";
+                  const modelURL = URL31 + "model.json";
+                  const metadataURL = URL31 + "metadata.json";
                   // load the model and metadata
                   // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
                   // Note: the pose library adds a tmPose object to your window (window.tmPose)
@@ -305,7 +305,7 @@
       
                   // append/get elements to the DOM
 
-                    const hidevideo = document.getElementById("video3-12");
+                    const hidevideo = document.getElementById("video3-1");
 
                   hidevideo.style.display = 'none';
                                            
