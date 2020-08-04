@@ -61,8 +61,8 @@
           </div>
 
             <div id ="ai">
-                <video id="video2-2" controls autoplay muted>
-                    <source src="videos/허리운동.mp4" type="video/mp4"/>
+                <video id="video2-4" controls autoplay muted>
+                    <source src="videos/팔벌려뛰기.mp4" type="video/mp4"/>
                   </video>
 
                 <canvas id="canvas">
@@ -76,7 +76,7 @@
                 <div id="frame">
                     <div class="center">
                         <div class="headline">
-                            <div class="small">허리</div>운동
+                            <div class="small">팔벌려</div>뛰기
                         </div>
                         <div class="circle-big">
                             <div class="text">
@@ -186,7 +186,7 @@
               // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
       
               // 
-              const URL = "https://lee-jongbae78.github.io/contest2020/my_model_22/";
+              const URL = "https://lee-jongbae78.github.io/contest2020/my_model_24/";
 
               let model, webcam, ctx, labelContainer, maxPredictions;
       
@@ -286,7 +286,7 @@
                   await webcam.play();
                   window.requestAnimationFrame(loop);
       
-                  const hidevideo = document.getElementById("video2-2");
+                  const hidevideo = document.getElementById("video2-4");
                   hidevideo.style.display = 'none';
 
                   // append/get elements to the DOM
